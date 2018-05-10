@@ -78,3 +78,12 @@ a, a:hover {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+svg, .svg-wrapper {
+  max-width: 75px;
+  max-height: 50px;
+}
+
+.svg-wrapper {
+  margin: auto;
+}
