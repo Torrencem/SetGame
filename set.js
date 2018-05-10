@@ -9,7 +9,11 @@ var images = {
   "se":null,
   "sp":null,
   "ss":null
-}
+};
+
+var deck = [];
+createDeck();
+shuffleDeck();
 
 loadAllImages();
 var as = [].slice.call(document.getElementsByClassName("card"));
@@ -49,11 +53,6 @@ function loadAllImages() {
   }
 }
 
-function TEMPTEST() {
-  let card = [].slice.call(document.getElementsByClassName("card"))[0];
-  card.appendChild(images["ss"]);
-}
-
 function getAllSelected() {
   var cards = [].slice.call(document.getElementsByClassName("card"));
   return cards.filter(c => c.classList.contains("chosen"));
@@ -71,7 +70,63 @@ function unSelectAll() {
 
 function checkSelectedSet() {
   // Blah Blah Blah
-  // Temporary
-  TEMPTEST();
   unSelectAll();
 }
+
+function createDeck() {
+  ['r', 'g', 'b'].forEach(function (color) {
+    ['1', '2', '3'].forEach(function (num) {
+      ['d', 'r', 's'].forEach(function (style) {
+        ['e', 's', 'p'].forEach(function (fill) {
+          deck.push(color + num + style + fill);
+        });
+      });
+    });
+  });
+}
+
+function shuffleDeck() {
+  var j, x, i;
+    for (i = deck.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = deck[i];
+        deck[i] = deck[j];
+        deck[j] = x;
+    }
+}
+
+function applyStyleToCard(card, style) {
+  // Clear the current DOM under the card
+  while (card.firstChild) {
+    card.removeChild(card.firstChild);
+  }
+  // Add our own style to card
+  var styleToUse = style[2] + style[3];
+  var num = parseInt(style[1]);
+
+  console.log(styleToUse);
+  let toAdd = images[styleToUse].cloneNode(true);
+  toAdd.classList.add("svg-wrapper" + num);
+
+  let itsColor = "#333";
+  if (style[0] == "r")
+    itsColor = "#F33";
+  if (style[0] == "g")
+    itsColor = "#3F3";
+  if (style[0] == "b")
+    itsColor = "#33F";
+
+  toAdd.firstChild.style.stroke = itsColor;
+  toAdd.firstChild.style.fill = itsColor;
+
+  card.appendChild(toAdd);
+  if (num == 2)
+    card.appendChild(toAdd.cloneNode(true));
+  if (num == 3)
+    card.appendChild(toAdd.cloneNode(true));
+}
+
+setTimeout(function () {
+  let card = document.getElementsByClassName("card")[0];
+  applyStyleToCard(card, "b2dp");
+}, 500);

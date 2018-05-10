@@ -21,6 +21,8 @@ a, a:hover {
   margin-top: 10px;
   border-radius: 9pt;
   overflow: hidden;
+
+  display: none;
 }
 
 .score {
@@ -62,7 +64,19 @@ a, a:hover {
   border: 2px solid red;
 }
 
+svg {
+  stroke: #000;
+  fill: #000;
+}
 
+svg, .svg-wrapper {
+  max-width: 80px;
+  max-height: 40px;
+}
+
+.svg-wrapper3 {
+  max-height: 32px;
+}
 
 @media only screen and (max-width: 620px){
   .main-game-area {
@@ -72,6 +86,15 @@ a, a:hover {
   .card {
     height: 63px;
   }
+
+  svg, .svg-wrapper {
+    max-width: 40px;
+    max-height: 20px;
+  }
+
+  .svg-wrapper3 {
+    max-height: 17px;
+  }
 }
 
 .col {
@@ -79,11 +102,16 @@ a, a:hover {
   padding-right: 5px;
 }
 
-svg, .svg-wrapper {
-  max-width: 75px;
-  max-height: 50px;
+.svg-wrapper {
+  position: relative;
+  top: 32%;
+  margin: auto;
 }
 
-.svg-wrapper {
-  margin: auto;
+.svg-wrapper2 {
+  top: 12%;
+}
+
+.svg-wrapper3 {
+  top: 2%;
 }
