@@ -15,7 +15,10 @@ var deck = [];
 createDeck();
 shuffleDeck();
 
-loadAllImages();
+loadAllImages().then(function(ig) {
+  main();
+});
+
 var as = [].slice.call(document.getElementsByClassName("card"));
 
 as.forEach(function(element) {
@@ -34,23 +37,27 @@ as.forEach(function(element) {
 // Images
 function loadAllImages() {
   var parser = new DOMParser();
+  var waiting = [];
 
   for (var imagename in images) {
     if (images.hasOwnProperty(imagename)) {
       // Load imagename
-      fetch("svg/" + imagename + ".svg").then (response =>
-        response.text()
-      ).then(svg => {
-        let parseSVG = parser.parseFromString(svg, "image/svg+xml").documentElement;
-        let divT = document.createElement("div");
-        divT.classList.add("svg-wrapper");
-        divT.appendChild(parseSVG);
-        // Figure out my name
-        let itsname = parseSVG.getAttribute("sodipodi:docname").split('.')[0];
-        images[itsname] = divT;
-      });
+      waiting.push(
+        fetch("svg/" + imagename + ".svg").then(response =>
+          response.text()
+        ).then(svg => {
+          let parseSVG = parser.parseFromString(svg, "image/svg+xml").documentElement;
+          let divT = document.createElement("div");
+          divT.classList.add("svg-wrapper");
+          divT.appendChild(parseSVG);
+          // Figure out my name
+          let itsname = parseSVG.getAttribute("sodipodi:docname").split('.')[0];
+          images[itsname] = divT;
+        })
+      );
     }
   }
+  return Promise.all(waiting);
 }
 
 function getAllSelected() {
@@ -104,7 +111,6 @@ function applyStyleToCard(card, style) {
   var styleToUse = style[2] + style[3];
   var num = parseInt(style[1]);
 
-  console.log(styleToUse);
   let toAdd = images[styleToUse].cloneNode(true);
   toAdd.classList.add("svg-wrapper" + num);
 
@@ -119,14 +125,30 @@ function applyStyleToCard(card, style) {
   toAdd.firstChild.style.stroke = itsColor;
   toAdd.firstChild.style.fill = itsColor;
 
+  //weird
+  let patternInfo = toAdd.firstChild.firstChild.nextSibling.firstChild;
+  if (patternInfo) {
+    let basePattern = patternInfo.nextSibling;
+    basePattern.id = "Ermine" + style[0] + style[2];
+    // trust me
+    let styleOfShape = toAdd.firstChild.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.style;
+    styleOfShape.fill = 'url("#Ermine' + style[0] + style[2] + '")'
+  }
+
+
   card.appendChild(toAdd);
-  if (num == 2)
+  if (num == 2) {
     card.appendChild(toAdd.cloneNode(true));
-  if (num == 3)
+  }
+  if (num == 3){
     card.appendChild(toAdd.cloneNode(true));
+    card.appendChild(toAdd.cloneNode(true));
+  }
 }
 
-setTimeout(function () {
-  let card = document.getElementsByClassName("card")[0];
-  applyStyleToCard(card, "b2dp");
-}, 500);
+function main() {
+  [].slice.call(document.getElementsByClassName("card")).forEach(function (card) {
+    let s = deck.pop();
+    applyStyleToCard(card, s);
+  });
+}

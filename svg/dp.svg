@@ -21,17 +21,12 @@
   <defs
      id="defs2">
     <pattern
-       inkscape:collect="always"
-       xlink:href="#Ermine"
-       id="pattern6575"
-       patternTransform="matrix(0.01639281,0.01639281,-0.0417021,0.0417021,0,0)" />
-    <pattern
        inkscape:isstock="true"
        inkscape:stockid="Ermine"
        patternUnits="userSpaceOnUse"
        width="783.093"
        height="797.156"
-       patternTransform="translate(0,0) scale(0.05,0.05)"
+       patternTransform="matrix(0.01639281,0.01639281,-0.0417021,0.0417021,0,0)"
        id="Ermine"
        inkscape:collect="always">
       <g
@@ -124,7 +119,7 @@
      transform="translate(-33.620857,-73.597038)">
     <path
        transform="matrix(0.94179511,-0.33618739,0.94179511,0.33618739,0,0)"
-       style="fill:url(#pattern6575);fill-opacity:1;stroke-width:3.18310714;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:url(#Ermine);fill-opacity:1;stroke-width:3.18310714;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m -114.80835,153.6893 h 46.203759 v 46.20376 h -46.203759 z"
        id="rect827"
        inkscape:connector-curvature="0" />

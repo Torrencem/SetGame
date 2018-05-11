@@ -54,7 +54,7 @@
      id="layer1"
      transform="translate(-33.620857,-73.597038)">
     <path
-       style="fill:#000000stroke-width:2.67799997;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="stroke-width:2.67799997;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 80.872892,77.945685 C 60.726576,68.795864 53.015496,81.832551 34.959385,96.507042 57.829009,92.057023 61.937307,94.981245 79.391811,103.42823 96.846315,111.87521 113.54389,92.809487 125.30532,83.608479 104.78084,86.832105 101.0192,87.095489 80.872892,77.945685 Z"
        id="path816"
        inkscape:connector-curvature="0"
