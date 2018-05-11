@@ -76,7 +76,19 @@ function unSelectAll() {
 }
 
 function checkSelectedSet() {
-  // Blah Blah Blah
+  let cards = getAllSelected();
+  // console.log(checkIfSet(cards));
+  if (checkIfSet(cards)) {
+    // Re-assign those cards
+    cards.forEach(function (c) {
+      if (deck.length != 0){
+        var d = deck.pop();
+        applyStyleToCard(c, d);
+        c.myval = d;
+      }
+    });
+  }
+
   unSelectAll();
 }
 
@@ -100,6 +112,29 @@ function shuffleDeck() {
         deck[i] = deck[j];
         deck[j] = x;
     }
+}
+
+function checkIfSet(cards) {
+  var theseProps = {};
+  let c1 = cards[0].myval;
+  let c2 = cards[1].myval;
+  let c3 = cards[2].myval;
+  // console.log("CARDS: " + c1 + ", " + c2 + ", " + c3);
+
+  for (var i = 0; i < 4; i++) {
+    if(c1[i] == c2[i]) {
+      if(c3[i] != c1[i]) {
+        // console.log(c1[i] + ' != ' + c3[i]);
+        return false;
+      }
+    } else {
+      if(c3[i] == c1[i] || c3[i] == c2[i]) {
+        // console.log(c1[i] + ', ' + c2[i] + ', ' + c3[i]);
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 function applyStyleToCard(card, style) {
@@ -147,8 +182,11 @@ function applyStyleToCard(card, style) {
 }
 
 function main() {
+  // console.log(images);
   [].slice.call(document.getElementsByClassName("card")).forEach(function (card) {
     let s = deck.pop();
     applyStyleToCard(card, s);
+    // console.log(s);
+    card.myval = s;
   });
 }
