@@ -26,7 +26,7 @@
        patternUnits="userSpaceOnUse"
        width="783.093"
        height="797.156"
-       patternTransform="matrix(0.01639281,0.01639281,-0.0417021,0.0417021,0,0)"
+       patternTransform="scale(1.8, 1.8) matrix(0.01639281,0.01639281,-0.0417021,0.0417021,0,0)"
        id="Ermine"
        inkscape:collect="always">
       <g

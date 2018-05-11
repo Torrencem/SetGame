@@ -101,6 +101,10 @@ svg, .svg-wrapper {
   padding-left: 5px;
   padding-right: 5px;
 }
+.row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 .svg-wrapper {
   position: relative;
